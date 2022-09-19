@@ -403,8 +403,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
     t.boolean "repackage_essentials", default: false, null: false
     t.boolean "distribute_monthly", default: false, null: false
     t.bigint "ndbn_member_id"
-    t.boolean "enable_child_based_requests", default: true, null: false
-    t.boolean "enable_individual_requests", default: true, null: false
     t.index ["latitude", "longitude"], name: "index_organizations_on_latitude_and_longitude"
     t.index ["short_name"], name: "index_organizations_on_short_name"
   end
@@ -512,8 +510,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "other_agency_type"
     t.string "status_in_diaper_base"
-    t.boolean "enable_child_based_requests", default: true, null: false
-    t.boolean "enable_individual_requests", default: true, null: false
     t.index ["essentials_bank_id"], name: "index_partners_on_essentials_bank_id"
   end
 
@@ -790,6 +786,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
   add_foreign_key "partner_requests", "users", column: "partner_user_id"
   add_foreign_key "partner_users", "partner_profiles", column: "partner_id"
   add_foreign_key "partners", "storage_locations", column: "default_storage_location_id"
+  add_foreign_key "product_drives", "organizations"
   add_foreign_key "product_drives", "organizations"
   add_foreign_key "requests", "distributions"
   add_foreign_key "requests", "organizations"
