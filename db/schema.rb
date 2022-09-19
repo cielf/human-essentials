@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_19_191218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -170,6 +170,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
     t.index ["family_id"], name: "index_children_on_family_id"
   end
 
+  create_table "counties", force: :cascade do |t|
+    t.string "name"
+    t.string "state_or_territory"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -204,8 +211,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
     t.integer "organization_id"
     t.datetime "issued_at", precision: nil
     t.string "agency_rep"
-    t.integer "state", default: 5, null: false
     t.boolean "reminder_email_enabled", default: false, null: false
+    t.integer "state", default: 5, null: false
     t.integer "delivery_method", default: 0, null: false
     t.index ["organization_id"], name: "index_distributions_on_organization_id"
     t.index ["partner_id"], name: "index_distributions_on_partner_id"
@@ -747,7 +754,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
   end
 
   create_table "versions", force: :cascade do |t|
-    t.string "item_type", null: false
+    t.string "item_type"
+    t.string "{:null=>false}"
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
@@ -786,7 +794,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_211052) do
   add_foreign_key "partner_requests", "users", column: "partner_user_id"
   add_foreign_key "partner_users", "partner_profiles", column: "partner_id"
   add_foreign_key "partners", "storage_locations", column: "default_storage_location_id"
-  add_foreign_key "product_drives", "organizations"
   add_foreign_key "product_drives", "organizations"
   add_foreign_key "requests", "distributions"
   add_foreign_key "requests", "organizations"
