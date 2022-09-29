@@ -410,6 +410,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_191218) do
     t.boolean "repackage_essentials", default: false, null: false
     t.boolean "distribute_monthly", default: false, null: false
     t.bigint "ndbn_member_id"
+    t.boolean "enable_child_based_requests", default: true, null: false
+    t.boolean "enable_individual_requests", default: true, null: false
     t.index ["latitude", "longitude"], name: "index_organizations_on_latitude_and_longitude"
     t.index ["short_name"], name: "index_organizations_on_short_name"
   end
@@ -517,6 +519,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_191218) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "other_agency_type"
     t.string "status_in_diaper_base"
+    t.boolean "enable_child_based_requests", default: true, null: false
+    t.boolean "enable_individual_requests", default: true, null: false
     t.index ["essentials_bank_id"], name: "index_partners_on_essentials_bank_id"
   end
 
@@ -653,16 +657,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_191218) do
     t.index ["status"], name: "index_requests_on_status"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
-  end
-
   create_table "storage_locations", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -728,14 +722,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_191218) do
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["partner_id"], name: "index_users_on_partner_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "users_roles", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
-    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   create_table "vendors", force: :cascade do |t|
