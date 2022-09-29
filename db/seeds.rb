@@ -214,6 +214,9 @@ note = [
 
 
 
+
+
+
   # ----------------------------------------------------------------------------
   # Creating associated records within the Partnerbase database
   #
@@ -594,6 +597,39 @@ end
     comments: "Urgent",
     status: status
   )
+end
+
+# ----------------------------------------------------------------------------
+# Partner Counties
+# ----------------------------------------------------------------------------
+
+# aim -- every partner except one will have some non-zero number of counties
+# Noted -- The first pass of this is kludgey as all get out.  I'm *sure* there is a better way
+partner_ids = Partner.pluck(:id)
+partner_ids.shift(1)
+county_ids = County.pluck(:id)
+
+partner_ids.each do |partner_id|
+  partner = Partner.find(partner_id)
+  num_counties_for_partner = Faker::Number.within(range: 1..20)
+  county_ids_for_this_partner = county_ids.sample(num_counties_for_partner)
+  remaining_percentage = 100
+  share_ceiling = 100/num_counties_for_partner  #arbitrary,  so I can do the math easily
+  county_index = 0
+  client_share = 0
+  county_ids_for_this_partner.each do |county_id|
+    if county_index < (num_counties_for_partner - 1)
+      client_share = Faker::Number.within(range:1..share_ceiling)
+    else
+      client_share = remaining_percentage
+    end
+
+    PartnerCounty.create(
+      partner: partner,
+      county: County.find(county_id),
+      client_share: client_share
+    )
+  end
 end
 
 # ----------------------------------------------------------------------------
