@@ -2,9 +2,16 @@
   <h5 class="card-header bg-primary text-white">Area Served</h5>
   <div class="card-body">
     <dl>
-      <dt>Coming: </dt>
-      <dd>Soon!</dd>
+      <% county_col = PartnerCounty.where(partner: partner) %>
+      <% if county_col.any? %>
+        <table>
+          <th>County</th><th>% of Clients in county</th>
+          <%= render partial: "partners/profiles/show/partner_county_row", collection: county_col %>
+        </table>
 
+      <% else %>
+        <dt><%= "No County Specified" %></dt><dd>100%</dd>
+      <%end %>
     </dl>
   </div>
 </div>

@@ -603,15 +603,15 @@ end
 # Partner Counties
 # ----------------------------------------------------------------------------
 
-# aim -- every partner except one will have some non-zero number of counties
+# aim -- every partner except one will have some non-zero number of counties,  and the first one 'verified' will have counties, for convenience sake
 # Noted -- The first pass of this is kludgey as all get out.  I'm *sure* there is a better way
 partner_ids = Partner.pluck(:id)
-partner_ids.shift(1)
+partner_ids.pop(1)
 county_ids = County.pluck(:id)
 
 partner_ids.each do |partner_id|
   partner = Partner.find(partner_id)
-  num_counties_for_partner = Faker::Number.within(range: 1..20)
+  num_counties_for_partner = Faker::Number.within(range: 1..10)
   county_ids_for_this_partner = county_ids.sample(num_counties_for_partner)
   remaining_percentage = 100
   share_ceiling = 100/num_counties_for_partner  #arbitrary,  so I can do the math easily
