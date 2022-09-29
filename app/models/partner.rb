@@ -37,6 +37,8 @@ class Partner < ApplicationRecord
 
   has_many_attached :documents
 
+  has_many :partner_counties, dependent: :destroy
+
   validates :organization, presence: true
   validates :name, presence: true, uniqueness: { scope: :organization }
 
