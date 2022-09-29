@@ -9,5 +9,5 @@
 #  updated_at         :datetime         not null
 #
 class County < ApplicationRecord
-  has_many :partner_counties, dependent: restrict_with_exception
+  has_many :partner_counties, dependent: :restrict_with_exception
 end
