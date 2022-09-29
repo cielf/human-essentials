@@ -65,6 +65,11 @@
       <p>Storage Space Description: <%= partner_profile.describe_storage_space %></p>
       <br>
     <% end %>
+    <% if partner_profile_fields.include?('area_served') || partner_profile_fields.empty? %>
+      <h2 class='text-2xl underline'>Area Served</h2>
+      <p>Coming Soon</p>
+      <br>
+    <% end %>
     <% if partner_profile_fields.include?('population_served') || partner_profile_fields.empty? %>
       <h2 class='text-2xl underline'>Population Served</h2>
       <p>Income Requirement

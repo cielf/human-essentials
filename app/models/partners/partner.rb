@@ -141,6 +141,7 @@ module Partners
       agency_stability
       organizational_capacity
       sources_of_funding
+      area_served
       population_served
       executive_director
       diaper_pick_up_person
