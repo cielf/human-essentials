@@ -1,8 +1,11 @@
 module Partners
   class ProfilesController < BaseController
-    def show; end
+    def show;
+    end
 
-    def edit; end
+    def edit
+      @counties = County.all
+    end
 
     def update
       if current_partner.update(partner_params)
