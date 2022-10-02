@@ -3,15 +3,15 @@
     <div class='d-flex flex-column justify-content-center'>
       <div class='d-flex flex-row'>
         <span class="li-name">
-          <%= form.input :county_id, collection: @counties, prompt: "County or equivalent", include_blank: "", label: false, input_html: { class: "my-0" } %>
+          <%= f.input :county_id, collection: @counties, prompt: "County or equivalent", include_blank: "", label: false, input_html: { class: "my-0" } %>
         </span>
         <div class="li-quantity mx-2">
-          <%= form.input :client_share, placeholder: "Client Share", label: false, input_html: { class: "quantity my-0"} %>
+          <%= f.input :client_share, placeholder: "Client Share", label: false, input_html: { class: "quantity my-0"} %>
         </div>
       </div>
     </div>
 
-     <%= delete_partner_county_button form %>
+     <%= delete_partner_county_button f %>
   </div>
   <hr class="partner-county-separator">
 </section>
