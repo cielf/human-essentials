@@ -190,7 +190,6 @@ def delete_partner_county_button(form, options = {})
 end
 
 def add_partner_county_button(form, node, options = {})
-  puts "!!!!!!!!!!!!!!!! #{form}"
   text = options[:text] || "Add another county"
   size = options[:size] || "md"
   type = options[:type] || "primary"
@@ -203,5 +202,3 @@ def add_partner_county_button(form, node, options = {})
     fa_icon "plus", text: text
   end
 end
-
-

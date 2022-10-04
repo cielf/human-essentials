@@ -1,6 +1,6 @@
 module Partners
   class ProfilesController < BaseController
-    def show;
+    def show
     end
 
     def edit
@@ -8,14 +8,13 @@ module Partners
     end
 
     def update
-      if (PartnerProfileUpdateService.new(current_partner, partner_params).call)
+      if PartnerProfileUpdateService.new(current_partner, partner_params).call
         flash[:success] = "Details were successfully updated."
         redirect_to partners_profile_path
       else
         render :edit
       end
     end
-
 
     private
 
@@ -88,7 +87,7 @@ module Partners
         :essentials_funding_source,
         :enable_child_based_requests,
         :enable_individual_requests,
-        partner_counties_attributes: %i(county_id client_share _destroy),
+        partner_counties_attributes: %i[county_id client_share _destroy],
         documents: []
       )
     end

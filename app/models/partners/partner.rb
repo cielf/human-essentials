@@ -91,7 +91,7 @@ module Partners
     has_one_attached :proof_of_partner_status
     has_one_attached :proof_of_form_990
     has_many_attached :documents
-    has_many :partner_counties
+    has_many :partner_counties, dependent: :destroy
     accepts_nested_attributes_for :partner_counties
 
     self.ignored_columns = %w[
