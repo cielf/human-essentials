@@ -10,8 +10,4 @@
 #
 class County < ApplicationRecord
   has_many :partner_counties, dependent: :restrict_with_exception
-
-  def full_name
-    "#{name}, #{state_or_territory}"
-  end
 end
