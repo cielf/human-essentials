@@ -1,12 +1,11 @@
 class ProfilesController < ApplicationController
   def edit
-    @partner = current_organization.partners.find(params[:id]).profile
+    @partner = current_organization.partners.includes(:partner_counties).find(params[:id]).profile
   end
 
   def update
-    @partner = current_organization.partners.find(params[:id]).profile
+    @partner = current_organization.partners.includes(:partner_counties).find(params[:id]).profile
     if (PartnerProfileUpdateService.new(@partner, edit_profile_params).call)
-      # if @partner.update(edit_profile_params)
       redirect_to partner_path(@partner.partner) + "#partner-information", notice: "#{@partner.name} updated!"
     else
       flash[:error] = "Something didn't work quite right -- try again?"
