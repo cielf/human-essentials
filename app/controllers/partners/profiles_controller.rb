@@ -8,13 +8,14 @@ module Partners
     end
 
     def update
-      if current_partner.update(partner_params)
+      if (PartnerProfileUpdateService.new(current_partner, partner_params).call)
         flash[:success] = "Details were successfully updated."
         redirect_to partners_profile_path
       else
         render :edit
       end
     end
+
 
     private
 
