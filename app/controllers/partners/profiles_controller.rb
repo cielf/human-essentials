@@ -88,6 +88,7 @@ module Partners
         :essentials_funding_source,
         :enable_child_based_requests,
         :enable_individual_requests,
+        partner_counties_attributes: %i(county_id client_share _destroy),
         documents: []
       )
     end

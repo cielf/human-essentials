@@ -11,6 +11,11 @@ class PartnerProfileUpdateService
   def call
     @partner.update(@params)
 
+    @partner.partner_counties.each(&:destroy!)
+    @partner.reload
+    # Replace the current distribution with the new parameters
+
+    @partner.update! @params
   end
 
 end
