@@ -5,6 +5,8 @@ module Partners
 
     def edit
       @counties = County.all
+
+      @client_share_total = current_partner.client_share_total
     end
 
     def update

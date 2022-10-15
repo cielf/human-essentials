@@ -6,7 +6,7 @@
           <%= f.input :county_id, collection: @counties, prompt: "County or equivalent", include_blank: "", label: false, input_html: { class: "my-0" } %>
         </span>
         <div class="li-quantity mx-2">
-          <%= f.input :client_share, placeholder: "Client Share", label: false, input_html: { class: "quantity my-0"} %>
+          <%= f.input :client_share, placeholder: "Client Share", label: false, input_html: { class: "quantity my-0", onchange: 'calculate_client_share_total()'} %>
         </div>
       </div>
     </div>

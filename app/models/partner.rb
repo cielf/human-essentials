@@ -163,6 +163,8 @@ class Partner < ApplicationRecord
       .references(:line_items).map(&:line_items).flatten.sum(&:quantity)
   end
 
+
+
   private
 
   def correct_document_mime_type
@@ -178,4 +180,7 @@ class Partner < ApplicationRecord
   def should_invite_because_email_changed?
     email_changed? and (invited? or awaiting_review? or recertification_required? or approved?)
   end
+
+
+
 end
