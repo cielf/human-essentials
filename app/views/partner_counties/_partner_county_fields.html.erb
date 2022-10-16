@@ -7,7 +7,7 @@
         </span>
         <div class="li-quantity mx-2">
           <%= f.input :client_share, placeholder: "Client Share", label: false, input_html: { class: "quantity my-0", onchange: 'calculate_client_share_total()',
-            } %>
+                                                                                              onkeyup:  'calculate_client_share_total()'} %>
         </div>
       </div>
     </div>
