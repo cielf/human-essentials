@@ -3203,6 +3203,7 @@ namespace :db do
       County.create(name: "Zapata County, Texas", state_or_territory: "Texas")
       County.create(name: "Zavala County, Texas", state_or_territory: "Texas")
       County.create(name: "Ziebach County, South Dakota", state_or_territory: "South Dakota")
+      County.create(name: "Other US counties", state_or_territory: "Not specified")
     else
       print "It appears the US counties have already been loaded.  Skipping US county load"
     end
