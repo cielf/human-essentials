@@ -94,6 +94,8 @@ module Partners
     has_many :partner_counties, dependent: :destroy
     accepts_nested_attributes_for :partner_counties
 
+    validate :total_client_share_is_0_or_100
+
     self.ignored_columns = %w[
       evidence_based_description
       program_client_improvement
@@ -206,7 +208,12 @@ module Partners
       families.pluck(:guardian_zip_code).uniq
     end
 
-
+    def total_client_share_is_0_or_100
+      cst = client_share_total
+      unless(cst == 0 or cst == 100)
+        errors.add(:base, "Total client share must be 0 or 100")
+      end
+    end
 
   end
 
