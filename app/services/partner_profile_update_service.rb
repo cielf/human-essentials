@@ -16,7 +16,7 @@ class PartnerProfileUpdateService
 
     @partner.update @params
 
-    @partner.error.nil?  # Returns true if no errors
+    @partner.valid?  # Returns true if no errors
   end
 
 end
