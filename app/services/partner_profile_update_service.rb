@@ -14,6 +14,9 @@ class PartnerProfileUpdateService
     @partner.reload
     # Replace the current distribution with the new parameters
 
-    @partner.update! @params
+    @partner.update @params
+
+    @partner.error.nil?  # Returns true if no errors
   end
+
 end
