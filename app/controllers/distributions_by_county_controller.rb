@@ -11,24 +11,25 @@ class DistributionsByCountyController < ApplicationController
     breakdown_hash["Unspecified"][:num_items] = 0
     breakdown_hash["Unspecified"][:amount] = 0.00
     distributions.each do |distribution|
-      partner_counties = distribution.partner.partner_counties
+      served_areas = distribution.partner.profile.served_areas
       num_items_for_distribution = distribution.line_items.total
       value_of_distribution = distribution.line_items.total_value
-      if partner_counties.size == 0
+      if served_areas.size == 0
         breakdown_hash["Unspecified"][:num_items] += num_items_for_distribution
         breakdown_hash["Unspecified"][:amount] += value_of_distribution
       else
-        partner_counties.each do |pc|
-          name = pc.county.name
+        served_areas.each do |served_area|
+          name = served_area.county.name
+          percentage = served_area.client_share / 100.0
           if !breakdown_hash[name]
             breakdown_hash[name] = {}
             breakdown_hash[name][:name] = name
-            breakdown_hash[name][:region] = pc.county.region
-            breakdown_hash[name][:num_items] = num_items_for_distribution * pc.client_share
-            breakdown_hash[name][:amount] = value_of_distribution * pc.client_share
+            breakdown_hash[name][:region] = served_area.county.region
+            breakdown_hash[name][:num_items] = (num_items_for_distribution * percentage).round(0)
+            breakdown_hash[name][:amount] = value_of_distribution * percentage
           else
-            breakdown_hash[name][:num_items] = breakdown_hash[name][:num_items] + num_items_for_distribution * pc.client_share
-            breakdown_hash[name][:amount] = breakdown_hash[name][:amount] + value_of_distribution * pc.client_share
+            breakdown_hash[name][:num_items] = breakdown_hash[name][:num_items] + (num_items_for_distribution * percentage).round(0)
+            breakdown_hash[name][:amount] = breakdown_hash[name][:amount] + value_of_distribution * percentage
           end
         end
       end

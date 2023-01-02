@@ -10,4 +10,5 @@
 #
 class County < ApplicationRecord
   has_many :partner_counties, dependent: :destroy
+  has_many :served_areas, class_name: "Partners::ServedArea", dependent: :destroy
 end

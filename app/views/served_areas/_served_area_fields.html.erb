@@ -1,4 +1,4 @@
-<section class="nested-fields partner-county">
+<section class="nested-fields partner_served_area">
   <div class="row mt-2 d-flex flex-row align-items-center justify-content-between">
     <div class='d-flex flex-column justify-content-center'>
       <div class='d-flex flex-row'>
@@ -10,7 +10,7 @@
           <%= f.input :client_share, placeholder: "Client Share", label: false, input_html: { class: "pc-client-share", onchange: 'calculate_client_share_total()',
                                                                                               onkeyup:  'calculate_client_share_total()'} %>
         </div>
-        <%= delete_partner_county_button f %>
+        <%= delete_served_area_button f %>
       </div>
     </div>
   </div>

@@ -86,11 +86,12 @@ RSpec.describe Partners::Profile, type: :model do
     it { should have_one_attached(:proof_of_partner_status) }
     it { should have_one_attached(:proof_of_form_990) }
     it { should have_many_attached(:documents) }
-    it { should have_many(:partner_counties).through(:partner) }
+
+    it { should have_many(:served_areas) }
   end
 
-  it "must allow deleting partner_counties through profile" do
-    should accept_nested_attributes_for(:partner_counties).allow_destroy(true)
+  it "must allow deleting served_areas" do
+    should accept_nested_attributes_for(:served_areas).allow_destroy(true)
   end
 
   describe "social media info validation for profile" do
@@ -141,7 +142,7 @@ RSpec.describe Partners::Profile, type: :model do
   end
 
   describe "client share behaviour" do
-    context "no partner counties" do
+    context "no served areas" do
       let(:profile) { FactoryBot.build(:partner_profile) }
       it "has 0 client share" do
         expect(profile.client_share_total).to eq(0)
@@ -153,9 +154,22 @@ RSpec.describe Partners::Profile, type: :model do
         profile = create(:partner_profile)
         county1 = create(:county, name: "county1", region: "region1")
         county2 = create(:county, name: "county2", region: "region2")
-        create(:partner_county, partner_id: profile.partner_id, county: county1, client_share: 50)
-        create(:partner_county, partner_id: profile.partner_id, county: county2, client_share: 25)
-        expect(profile.client_share_total).to eq(75)
+        create(:partners_served_area, partner_profile: profile, county: county1, client_share: 50)
+        create(:partners_served_area, partner_profile: profile, county: county2, client_share: 49)
+        profile.reload
+        expect(profile.client_share_total).to eq(99)
+        expect(profile.valid?).to eq(false)
+      end
+
+      it "is valid if client share sum is 100" do
+        profile = create(:partner_profile)
+        county1 = create(:county, name: "county1", region: "region1")
+        county2 = create(:county, name: "county2", region: "region2")
+        create(:partners_served_area, partner_profile: profile, county: county1, client_share: 75)
+        create(:partners_served_area, partner_profile: profile, county: county2, client_share: 25)
+        profile.reload
+        expect(profile.client_share_total).to eq(100)
+        expect(profile.valid?).to eq(true)
       end
     end
   end

@@ -1,3 +1,10 @@
+<script type="text/javascript">
+    document.onreadystatechange = function(){//window.addEventListener('readystatechange',function(){...}); (for Netscape) and window.attachEvent('onreadystatechange',function(){...}); (for IE and Opera) also work
+        if(document.readyState=='loaded' || document.readyState=='complete')
+            calculate_client_share_total();
+    }
+</script>
+
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -20,7 +27,7 @@
               <div class="row">
                 <div class="col-6">
                   <%= render partial: "partners/profiles/edit/agency_information",
-                             locals: {form: profile_form, partner: @partner, profile: @partner.profile, profile_form: profile_form} %>
+                             locals: {form: form, partner: @partner, profile: @partner.profile, profile_form: profile_form} %>
                 </div>
                 <% @partner.partials_to_show.each do |partial| %>
                   <div class="col-6">

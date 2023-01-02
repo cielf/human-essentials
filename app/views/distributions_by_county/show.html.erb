@@ -44,7 +44,7 @@
                 <tr>
                   <td><%= key %></td>
                   <td class="numeric"><%= number_with_delimiter(bd[:num_items]) %></td>
-                  <td class="numeric"><%= dollar_presentation(bd[:amount]) %></td>
+                  <td class="numeric align-right"><%= dollar_presentation(bd[:amount]) %></td>
                 </tr>
               <% end %>
 

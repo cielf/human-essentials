@@ -722,6 +722,7 @@ county_ids = County.pluck(:id)
 
 partner_ids.each do |partner_id|
   partner = Partner.find(partner_id)
+  profile = partner.profile
   num_counties_for_partner = Faker::Number.within(range: 1..10)
   remaining_percentage = 100
   share_ceiling = 100/num_counties_for_partner  #arbitrary,  so I can do the math easily
@@ -736,8 +737,8 @@ partner_ids.each do |partner_id|
       client_share = Faker::Number.within(range:1..share_ceiling)
     end
 
-    PartnerCounty.create(
-      partner: partner,
+    Partners::ServedArea.create(
+      partner_profile: profile,
       county: County.find(county_id),
       client_share: client_share
     )

@@ -28,20 +28,6 @@ RSpec.describe "/partners/profiles", type: :request do
         expect(response.body).to include("Area Served")
       end
     end
-
-    describe "PUT #update" do
-      xit "updates the county info" do
-        # TODO write update county info test correctly?
-        partner.profile.update!(address1: "123 Main St.", address2: "New York, New York")
-        put partners_profile_path(partner,
-          partner: {name: "Partnerdude"},
-          profile: {address1: "456 Main St.", address2: "Washington, DC"})
-        expect(partner.reload.name).to eq("Partnerdude")
-        expect(partner.profile.reload.address1).to eq("456 Main St.")
-        expect(partner.profile.address2).to eq("Washington, DC")
-        expect(response).to redirect_to(partners_profile_path)
-      end
-    end
   end
 
   describe "partial (area served) absence when only other partials specified" do
@@ -68,9 +54,9 @@ RSpec.describe "/partners/profiles", type: :request do
     end
   end
 
-  describe "partial (client_share) presence when that partial specified" do
+  describe "partial (area_served) presence when that partial specified" do
     let(:organization) { create(:organization, name: "3rd National Bank of Favour", partner_form_fields: ["area_served"]) }
-    let(:partner) { create(:partner, name: "Partnerlicious", organization: organization) }
+    let!(:partner) { create(:partner, name: "Partnerlicious", organization: organization) }
     let(:partner_user) { partner.primary_user }
     before do
       sign_in(partner_user)
@@ -88,12 +74,12 @@ RSpec.describe "/partners/profiles", type: :request do
       describe "full_county_list" do
         let(:county_1) { create(:county, name: "First County") }
         let(:county_2) { create(:county, name: "Second County") }
-        let!(:pc_1) { create(:partner_county, partner: partner, county: county_1, client_share: 70) }
-        let!(:pc_2) { create(:partner_county, partner: partner, county: county_2, client_share: 30) }
+        let!(:sa_1) { create(:partners_served_area, partner_profile: partner.profile, county: county_1, client_share: 70) }
+        let!(:sa_2) { create(:partners_served_area, partner_profile: partner.profile, county: county_2, client_share: 30) }
         it "displays the counties" do
           get partners_profile_path(partner)
-          expect(response.body).to include(pc_1.county.name)
-          expect(response.body).to include(pc_2.county.name)
+          expect(response.body).to include(sa_1.county.name)
+          expect(response.body).to include(sa_2.county.name)
           expect(response.body).not_to include("No County Specified")
         end
       end
@@ -107,18 +93,18 @@ RSpec.describe "/partners/profiles", type: :request do
       describe "full_county_list" do
         let(:county_1) { create(:county, name: "First County") }
         let(:county_2) { create(:county, name: "Second County") }
-        let!(:pc_1) { create(:partner_county, partner: partner, county: county_1, client_share: 70) }
-        let!(:pc_2) { create(:partner_county, partner: partner, county: county_2, client_share: 30) }
+        let!(:sa_1) { create(:partners_served_area, partner_profile: partner.profile, county: county_1, client_share: 70) }
+        let!(:sa_2) { create(:partners_served_area, partner_profile: partner.profile, county: county_2, client_share: 30) }
         before do
           get edit_partners_profile_path(partner)
         end
         it "displays the counties" do
-          expect(response.body).to include(pc_1.county.name)
-          expect(response.body).to include(pc_2.county.name)
+          expect(response.body).to include(sa_1.county.name)
+          expect(response.body).to include(sa_2.county.name)
           expect(response.body).not_to include("No County Specified")
         end
         it "has the right total" do
-          expect(response.body).to include "Total is: 100 %"
+          expect(response.body).to include "100 %" # Yes, it could have 100 % for other reasons, but "Total is 100%" is split between two divs
         end
       end
     end

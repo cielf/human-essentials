@@ -5,9 +5,9 @@
     <table>
       <th class="county-heading">County</th><th class="county-heading">% of Clients in county</th>
 
-      <% partner_county_col = PartnerCounty.where(partner: profile.partner) %>
-      <% if partner_county_col.any? %>
-        <%= render partial: "partners/profiles/show/partner_county_row", collection: partner_county_col %>
+      <% served_area_col = Partners::ServedArea.where(partner_profile: profile) %>
+      <% if served_area_col.any? %>
+        <%= render partial: "partners/profiles/show/served_area_row", collection: served_area_col %>
       <% else %>
         <tr ><td class="county-name"><%= "No County Specified" %></td><td class="client-share percent">100%</td></tr>
       <%end %>
