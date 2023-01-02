@@ -8,7 +8,7 @@ module Partners
     end
 
     def update
-      if current_partner.update(partner_params) && current_partner.profile.update(profile_params)
+      if PartnerProfileUpdateService.new(current_partner, partner_params, profile_params).call
         flash[:success] = "Details were successfully updated."
         redirect_to partners_profile_path
       else
@@ -19,7 +19,7 @@ module Partners
     private
 
     def partner_params
-      params.require(:partner).permit(:name)
+      params.require(:partner).permit(:name, partner_counties_attributes: %i[county_id client_share _destroy])
     end
 
     def profile_params
@@ -92,7 +92,7 @@ module Partners
         :enable_child_based_requests,
         :enable_individual_requests,
         :enable_quantity_based_requests,
-        partner_counties_attributes: %i[county_id client_share _destroy],
+        partner_attributes: %i[partner_counties],
         documents: []
       ).select { |_, v| v.present? }
     end
