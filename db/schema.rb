@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_01_155348) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_11_020808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -188,6 +188,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_155348) do
     t.index ["family_id"], name: "index_children_on_family_id"
   end
 
+  create_table "children_items", id: false, force: :cascade do |t|
+    t.bigint "child_id", null: false
+    t.bigint "item_id", null: false
+    t.index ["child_id", "item_id"], name: "index_children_items_on_child_id_and_item_id", unique: true
+    t.index ["item_id", "child_id"], name: "index_children_items_on_item_id_and_child_id", unique: true
+  end
+
   create_table "counties", force: :cascade do |t|
     t.string "name"
     t.string "region"
@@ -237,6 +244,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_155348) do
     t.boolean "reminder_email_enabled", default: false, null: false
     t.integer "delivery_method", default: 0, null: false
     t.decimal "shipping_cost", precision: 8, scale: 2
+    t.index ["issued_at"], name: "index_distributions_on_issued_at"
     t.index ["organization_id"], name: "index_distributions_on_organization_id"
     t.index ["partner_id"], name: "index_distributions_on_partner_id"
     t.index ["storage_location_id"], name: "index_distributions_on_storage_location_id"

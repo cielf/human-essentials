@@ -50,6 +50,9 @@ Rails.application.routes.draw do
     resources :distributions, only: [:index] do
       get :print, on: :member
     end
+    resources :donations, only: [:index] do
+      get :print, on: :member
+    end
   end
 
   # This is where a superadmin CRUDs all the things
@@ -89,8 +92,7 @@ Rails.application.routes.draw do
   resource :organization, path: :manage, only: %i(edit update) do
     collection do
       post :invite_user
-      put :deactivate_user
-      put :reactivate_user
+      post :remove_user
       post :resend_user_invitation
       post :promote_to_org_admin
       post :demote_to_user
@@ -136,6 +138,7 @@ Rails.application.routes.draw do
   resources :distributions do
     get :print, on: :member
     collection do
+      post :validate
       get :calendar
       get :schedule
       get :pickup_day
@@ -194,6 +197,12 @@ Rails.application.routes.draw do
   resources :item_categories, except: [:index]
 
   resources :partners do
+    resources :users, only: [:index, :create, :destroy], controller: 'partner_users' do
+      member do
+        post :resend_invitation
+      end
+    end
+
     collection do
       post :import_csv
     end
@@ -203,7 +212,6 @@ Rails.application.routes.draw do
       get :approve_application
       post :invite
       post :invite_and_approve
-      post :invite_partner_user
       post :recertify_partner
       put :deactivate
       put :reactivate
@@ -215,6 +223,7 @@ Rails.application.routes.draw do
   resources :product_drives
 
   resources :donations do
+    get :print, on: :member
     patch :add_item, on: :member
     patch :remove_item, on: :member
   end

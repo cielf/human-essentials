@@ -1,3 +1,5 @@
+DRAFT USER GUIDE
+
 # Support
 
 There are a few ways to get support -- some are better than others.
@@ -17,6 +19,10 @@ There is a link to submit a support ticket is at the bottom of the "Need Help?" 
 ### Email
 
 You can email info@humanessentials.app.   We generally look at these about once a week, on Sundays.
+
+### Stakeholder circle
+We hold a stakeholder circle the first Wednesday of every month at 6:00pm Eastern Time.  There will be other banks there, plus a couple members of the Human Essentials team.
+We publish the zoom, and (when we remember) in the Announcements in Human Essentials.
 
 ## For partners:
 We recommend that the partners seek support through the banks.  Each bank has their own particular way of doing things, and the development team doesn't want to mess that up.

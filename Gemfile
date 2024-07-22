@@ -32,6 +32,8 @@ gem "paper_trail"
 # Associates users with roles.
 gem "rolify", "~> 6.0"
 # Enforces "safe" migrations.
+# Pinned to 1.8.0 because 2.0.0 no longer support postgres v10
+# And as of now we are using postgres v10 in production
 gem "strong_migrations", "1.8.0"
 # used in events
 gem 'dry-struct'
@@ -103,7 +105,6 @@ gem "clockwork"
 # These are gems that aren't used directly, only as dependencies for other gems.
 # Technically they don't need to be in this Gemfile at all, but we are pinning them to
 # specific versions for compatibility reasons.
-gem "mini_racer", "~> 0.12.0"
 gem "nokogiri", ">= 1.10.4"
 gem "image_processing"
 gem "sprockets", "~> 4.2.1"
@@ -147,14 +148,14 @@ group :development, :test do
   # Add-on for command line to create a simple debugger.
   gem "pry-nav"
   # RSpec behavioral testing framework for Rails.
-  gem "rspec-rails", "~> 6.1.2"
+  gem "rspec-rails", "~> 6.1.3"
   # Static analysis / linter.
   gem "rubocop"
   # Rails add-on for static analysis.
   gem 'rubocop-performance'
-  gem "rubocop-rails", "~> 2.25.0"
+  gem "rubocop-rails", "~> 2.25.1"
   # Default rules for Rubocop.
-  gem "standard", "~> 1.37"
+  gem "standard", "~> 1.39"
   # Erb linter.
   gem "erb_lint"
 end
@@ -199,6 +200,8 @@ group :test do
   gem "webmock", "~> 3.23"
   # Interface capybara to chrome headless
   gem "cuprite"
+  # Read PDF files for tests
+  gem "pdf-reader"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
