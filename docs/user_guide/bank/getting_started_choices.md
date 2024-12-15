@@ -4,9 +4,9 @@ READY FOR REVIEW
 
 Human Essentials is designed to help you manage your inventory and your relationship with partners, while also providing at least some information to help with your grant writing.
 
-Some questions that will help you when you are setting up Human Essentials.  This is not a complete list.
+Here are some questions that will help you when you are setting up Human Essentials.  This is not a complete list.
 
-- Do you (your bank) want to start out immediately with my partners making requests, or do you want to just track your distributions for awhile first?
+- Do you (your bank) want to start out immediately with your partners making requests, or do you want to just track your distributions for awhile first?
 - Do you run on a monthly cycle, or more on an adhoc basis?
 - What information do you need from our partners (see [Partner Profile](pm_partner_profiles.md) for what you *can* collect in the system - this is somewhat configurable)?
   - Do you need to get all that information from your partners before they can enter requests? 

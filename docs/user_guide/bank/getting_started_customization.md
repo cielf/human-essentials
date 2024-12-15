@@ -21,14 +21,14 @@ Scroll down until you see an Edit button.  Click it.
 ![Navigation 1](images/getting_started/customization/gs_customization_navigation_1.png)
 
 
-You should now be in a screen that is titled "Editing [Your bank name]".  Change the information to suit your organization's needs and then click the "save" button at the bottom
+You should now be in a screen that is titled "Editing [Your Bank name]".  Change the information to suit your organization's needs and then click the "save" button at the bottom
 
 ![Top of edit screen](images/getting_started/customization/gs_customization_top_of_edit.png)
 Here's all the fields, with a bit about the implications of each one:
 
 ## Basic Information
 #### Name
-The name of your Essentials Bank.   This appears in the headings on most screens, and will appear on printouts (such as the distribution printout many banks use as a packing slip), and most reports.
+The name of your Essentials Bank.   This appears in the headings on most screens, and will appear on printouts (such as the Distribution printout many Banks use as a packing slip), and most reports.
 
 #### Short name
 You don't change this -- we assigned it when we set it up -- it's here for reference for support calls if we need it.
@@ -41,14 +41,14 @@ This is included on the Annual Survey report.  That's the only effect.
 Your Essentials Bank's website address.  This is mostly used during the Account Request process, so we can check if you are a good fit before you invest a lot of time and energy into the system.
 
 #### Email
-Your Essential Bank's email address.  This is shown to the partners on their help page, and is included in reminder emails, so please use an email that is monitored.   This email is also included on Distribution and Donation printouts.
+Your Essential Bank's email address.  This is shown to the Partners on their help page, and is included in reminder emails, so please use an email that is monitored.   This email is also included on Distribution and Donation printouts.
 
 #### Address
-Your Essential Bank's primary address.   This is shown on the distribution and Donation printouts.
+Your Essential Bank's primary address.   This is shown on the Distribution and Donation printouts.
 
 ------------
 ## Reminder Emails (optional)
-You can opt, on a partner by partner basis, to have reminder emails sent.  
+You can opt, on a Partner by Partner basis, to have reminder emails sent.  
 There is also a check-box on the Partner that must be checked for the Partner to get these emails.
 
 
@@ -56,12 +56,12 @@ The text of this email will be:
 
 Hello [Partner's name],
 
-This is a friendly reminder that [Your bank's name] requires your human essentials requests to be submitted by [the deadline date, including month and year]
+This is a friendly reminder that [Your Bank's name] requires your human essentials requests to be submitted by [the deadline date, including month and year]
 if you would like to receive a Distribution next month.
 
 Please log into Human Essentials at https://humanessentials.app before this date and submit your request if you are intending to submit an essentials request.
 
-Please contact [Your bank's name] at <%= @organization.email %>
+Please contact [Your Bank's name] at <%= @organization.email %>
 if you have any questions about this!
 
 
@@ -88,7 +88,7 @@ The [Partner Profile](pm_partner_profiles.md) is a very large form that includes
 This field lets you specify which of the sub-sections of that form will be used.  
 The Agency Information subsection is always included.
 If you do not specify any sections,  they will all be included.  
-The sections are:  
+The sections you can choose are:  
 - Media Information
 - Agency Stability
 - Organizational Capacity
@@ -100,12 +100,13 @@ The sections are:
 
 #### Default Storage Location
 
-The bank-wide default Storage Location for Donations and Purchases.  
+The Bank-wide default Storage Location for Donations and Purchases.  
 You can also specify a different default Storage Location on any Partner, which will override this default.
 If you specify a default Storage Location, it will be pre-populated as the Storage Location when you are adding new Distributions.
 
 #### Custom Partner Invitation Message 
-[!NOTE] The Custom Partner Invitation Message is currenty not working as advertised (as of November 13, 2024.).  The current behavior is as if you did not enter anything here.  We have fixing it on our "to do" list.
+[!NOTE] 
+The Custom Partner Invitation Message is currently not working as advertised (as of November 13, 2024.).  The current behavior is as if you did not enter anything here.  We have fixing it on our "to do" list.
 
 When you invite a Partner, they get an email.  This field lets you specify the message you are sending to them.  Just text -- we don't have any personalization capability for this email at this time.
 
@@ -138,9 +139,10 @@ These two fields are only here to be reported on the Annual Survey.
 
 -----------
 
-#### Custom Units
+## Custom Units
 
-NOTE:  This is not yet implemented as of Oct 12, 2024. We expect it to be implemented before this guide is launched.
+[!NOTE]
+This is not yet implemented as of Dec 15, 2024. We expect it to be implemented before this guide is launched.
 
 This is a special topic that has its own guide page [here](special_custom_units.md).  
 
@@ -148,12 +150,17 @@ This is a special topic that has its own guide page [here](special_custom_units.
 
 ## Controlling what kind of Requests a Partner can make
 
-There are three different ways a Partner can request essentials -- a "Child based" Request, a Request by number of individuals, and a quantity-based Request.  Some banks want to limit which Requests the partners can make, in order to minimize partner confusion.
+There are three different ways a Partner can request essentials 
+- a "Child based" Request, 
+- a Request by number of individuals, and 
+- a quantity-based Request.  
+
+Some Banks want to limit which Requests the Partners can make, in order to minimize Partner confusion.
 These three fields allow you to control which Requests the Partners can use.
 If you allow more than one kind, the Partner can also limit their own.
 Note that if any Partner limits themselves to a single type,  you won't be able to remove that type.  So, if you think you only want to allow quantity-based Requests, doing that up front is a fine idea. 
 
-#### Enable partners to make child-based Requests
+#### Enable partners to make child-based Requests?
 #### Enable partners to make Requests for individuals?
 #### Enable partners to make quantity-based Requests?
 
@@ -163,30 +170,31 @@ Note that if any Partner limits themselves to a single type,  you won't be able 
 There are four fields that allow you to tweak the appearance of the Distribution printout 
 
 ### Show Year-to-date values on the Distribution printout? 
-Some banks don't want to show year-to-date values on the receipt (1, below) because their fiscal year is not the calendar year.  
+Some Banks don't want to show year-to-date values on the receipt (1, below) because their fiscal year is not the calendar year.  
 ### Include Signature Lines on Distribution printout
-If "yes", this will include a space for someone from the bank and from the Partner to sign the Distribution printout (2, below) - which can be useful as a receipt acknowledgement.
+If "yes", this will include a space for someone from the Bank and from the Partner to sign the Distribution printout (2, below) - which can be useful as a receipt acknowledgement.
 ### Hide both value columns 
-The default is to show the in-kind value of the Items on the receipt (3, below).  Many banks don't need to show this information on the Distribution printout.
-Note:  Hiding this also hides the corresponding values on the single Donation printout. 
+The default is to show the in-kind value of the Items on the receipt (3, below).  Many Banks don't need to show this information on the Distribution printout.
+[!Note]  
+Hiding this also hides the corresponding values on the single Donation printout. 
 ### Hide the package column on Distribution receipts?
 This hides the packages column on the Distribution printout (4, below).  Because different brands of essentials use different size packages,  this
-column is useful mainly for banks that repackage their essentials into uniform package sizes.  If you have a uniform package size, you can specify that on the Item (see [Inventory Items](inventory_items.md))
+column is useful mainly for Banks that repackage their essentials into uniform package sizes.  If you have a uniform package size, you can specify that on the Item (see [Inventory Items](inventory_items.md))
 
 ![Distribution printout marked up with customizable sections](images/getting_started/customization/gs_customization_distribution_printout_customizable_sections.png)
 
 --------
 
 #### Use One Step Invite and Approve partner process?
-Partners can't submit Requests until they are approved by the bank.
-The full partner approval process requires the partner to fill in their profile and submit it for approval.  Some banks handle that for their partners,  gather the information through other means (such as a phone conversation). 
-Checking this will change the process so that the partners are automatically approved when they are invited. Note that any invited partners that are not yet approved will still need to be approved by the bank.
+Partners can't submit Requests until they are approved by the Bank.
+The full Partner approval process requires the Partner to fill in their profile and submit it for approval.  Some Banks handle that for their Partners,  gather the information through other means (such as a phone conversation). 
+Checking this will change the process so that the Partners are automatically approved when they are invited. Note that any invited Partners that are not yet approved will still need to be approved by the Bank.
 
 #### Distribution Email Content
-Note that there is a checkbox on the partner for them to receive Distribution emails.  We recommend you do customize this content, as the default text is abrupt.
+Note that there is a checkbox on the Partner for them to receive Distribution emails.  We recommend you do customize this content, as the default text is abrupt.
 You can customize this quite a bit! 
 
-Specifically, you can use the variables %{partner_name}, %{delivery_method}, %{distribution_date}, and %{comment} to include the partner's name, delivery method, distribution date, and comments sent in the email.  You can also format the text, and attach files by using the buttons above the field.
+Specifically, you can use the variables %{partner_name}, %{delivery_method}, %{distribution_date}, and %{comment} to include the Partner's name, delivery method, Distribution date, and comments sent in the email.  You can also format the text, and attach files by using the buttons above the field.
 
 Here's a real-life example (except for the URL)
 
