@@ -4,7 +4,7 @@ READY FOR REVIEW
 There are a few ways to get support -- some are better than others.
 ## For Banks:
 ### Slack 
-We highly recommend that you become a member of the Human Essentials Slack.  Here's a link to an invite:  https://human-essential.slack.com/join/shared_invite/zt-bfa8tymd-d8Ks3Mq000COcRe~nfs~zg#/shared-invite/email
+We highly recommend that you become a member of the Human Essentials Slack.  Here's a [link to an invite.](https://human-essential.slack.com/join/shared_invite/zt-bfa8tymd-d8Ks3Mq000COcRe~nfs~zg#/shared-invite/email)
 
 It's a good place to ask about how other banks *actually* use the system 
     -- any workarounds for things that don't 100% match how the system is set up.
